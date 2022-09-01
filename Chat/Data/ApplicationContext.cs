@@ -20,6 +20,11 @@ namespace Chat.Data
             ConfigureUsersTable(modelBuilder);
             ConfigureGroupsTable(modelBuilder);
 
+            modelBuilder.Entity<User>()
+               .HasMany(c => c.Groups)
+               .WithMany(s => s.Users)
+               .UsingEntity(j => j.ToTable("UserGroupsRelationship"));
+
             DataSeed(modelBuilder);
         }
 
