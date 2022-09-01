@@ -4,6 +4,7 @@ using Chat.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Chat.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20220901210630_AddMessageTable")]
+    partial class AddMessageTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -106,59 +108,6 @@ namespace Chat.Migrations
                     b.HasIndex("ToUserId");
 
                     b.ToTable("Messages");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("9f822d7d-dd51-40be-af82-115916947844"),
-                            Created = new DateTime(2022, 9, 1, 17, 55, 50, 0, DateTimeKind.Unspecified),
-                            FromUserId = new Guid("7aaab85f-fd13-4ea3-bda6-6397100ae230"),
-                            IsVisible = true,
-                            IsVisibleForOwner = true,
-                            Text = "Hello",
-                            ToUserId = new Guid("d0845b19-dd1f-4459-9890-47e341e5fd15")
-                        },
-                        new
-                        {
-                            Id = new Guid("5d045d62-5364-4aa1-b12a-2eab889d6a77"),
-                            Created = new DateTime(2022, 9, 1, 17, 56, 50, 0, DateTimeKind.Unspecified),
-                            FromUserId = new Guid("d0845b19-dd1f-4459-9890-47e341e5fd15"),
-                            IsVisible = true,
-                            IsVisibleForOwner = true,
-                            Text = "Hi",
-                            ToUserId = new Guid("7aaab85f-fd13-4ea3-bda6-6397100ae230")
-                        },
-                        new
-                        {
-                            Id = new Guid("7f00d977-9b3a-4780-896d-1fb4d3d6ecae"),
-                            Created = new DateTime(2022, 9, 1, 17, 57, 50, 0, DateTimeKind.Unspecified),
-                            FromUserId = new Guid("7aaab85f-fd13-4ea3-bda6-6397100ae230"),
-                            IsVisible = true,
-                            IsVisibleForOwner = true,
-                            ReplyMessageId = new Guid("5d045d62-5364-4aa1-b12a-2eab889d6a77"),
-                            Text = "How are you?",
-                            ToUserId = new Guid("d0845b19-dd1f-4459-9890-47e341e5fd15")
-                        },
-                        new
-                        {
-                            Id = new Guid("d59b98a3-2fc7-48af-a483-07b6f0d45c6c"),
-                            Created = new DateTime(2022, 9, 1, 17, 56, 50, 0, DateTimeKind.Unspecified),
-                            FromUserId = new Guid("d0845b19-dd1f-4459-9890-47e341e5fd15"),
-                            GroupId = new Guid("33e26927-34e7-412b-9d11-b0f93a533bb6"),
-                            IsVisible = true,
-                            IsVisibleForOwner = true,
-                            Text = "Lol"
-                        },
-                        new
-                        {
-                            Id = new Guid("315a053f-f19a-4a5d-9022-e6190400c006"),
-                            Created = new DateTime(2022, 9, 1, 17, 57, 50, 0, DateTimeKind.Unspecified),
-                            FromUserId = new Guid("7aaab85f-fd13-4ea3-bda6-6397100ae230"),
-                            GroupId = new Guid("33e26927-34e7-412b-9d11-b0f93a533bb6"),
-                            IsVisible = true,
-                            IsVisibleForOwner = true,
-                            Text = "Kek"
-                        });
                 });
 
             modelBuilder.Entity("Chat.Models.DboModels.User", b =>
