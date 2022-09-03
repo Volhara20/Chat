@@ -1,5 +1,5 @@
 using AutoMapper;
-using Chat.Data.Repositories;
+using Chat.Interfaces;
 using Chat.Models;
 using Chat.Models.DtoModels.User;
 using Microsoft.AspNetCore.Mvc;
@@ -10,19 +10,19 @@ namespace Chat.Controllers
     [Route("[controller]/[action]")]
     public class UserController : ControllerBase
     {
-        private readonly UserRepository _userRepository;
+        private readonly IRepositoryWrapper _repository;
         private readonly IMapper _mapper;
 
-        public UserController(UserRepository userRepository, IMapper mapper)
+        public UserController(IRepositoryWrapper repositoryWrapper, IMapper mapper)
         {
-            _userRepository = userRepository;
+            _repository = repositoryWrapper;
             _mapper = mapper;
         }
 
         [HttpGet]
         public async Task<GetUsersResponse> GetUsers()
         {
-            ICollection<Models.DboModels.User> users = await _userRepository.GetUsers();
+            ICollection<Models.DboModels.User> users = await _repository.User.GetAll();
 
             GetUsersResponse response = new GetUsersResponse
             {

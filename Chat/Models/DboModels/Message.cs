@@ -9,18 +9,18 @@ namespace Chat.Models.DboModels
         public string Text { get; set; }
         public Guid FromUserId { get; set; }
         [ForeignKey("FromUserId")]
-        public User FromUser { get; set; }
+        public virtual User FromUser { get; set; }
         public Guid? ToUserId { get; set; }
         [ForeignKey("ToUserId")]
-        public User ToUser { get; set; } = null;
+        public virtual User ToUser { get; set; } = null;
         public Guid? GroupId { get; set; }
         [ForeignKey("GroupId")]
-        public Group Group { get; set; } = null;
+        public virtual Group Group { get; set; } = null;
         public bool IsVisible { get; set; }
         public bool IsVisibleForOwner { get; set; }
         public Guid? ReplyMessageId { get; set; }
         [ForeignKey("ReplyMessageId")]
-        public Message ReplyMessage { get; set; } = null;
+        public virtual Message ReplyMessage { get; set; } = null;
         public DateTime Created { get; set; }
         public DateTime? Updated { get; set; }
     }

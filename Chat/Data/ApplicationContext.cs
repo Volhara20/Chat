@@ -75,6 +75,8 @@ namespace Chat.Data
                 .Property(x => x.Id)
                 .HasDefaultValueSql("NEWID()");
 
+            modelBuilder.Entity<User>().HasIndex(u => u.UserName).IsUnique();
+
         }
 
         private void ConfigureGroupsTable(ModelBuilder modelBuilder)
@@ -118,6 +120,7 @@ namespace Chat.Data
                 {
                     Id=Guid.Parse("7AAAB85F-FD13-4EA3-BDA6-6397100AE230"),
                     UserName="olka",
+                    UserPassword="TestPassword",
                     Created=new DateTime(2022,9,1,17,45,50),
                     Updated=null
                 },
@@ -125,6 +128,7 @@ namespace Chat.Data
                 {
                     Id=Guid.Parse("D0845B19-DD1F-4459-9890-47E341E5FD15"),
                     UserName="test",
+                    UserPassword="TestPassword",
                     Created=new DateTime(2022,9,1,17,46,50),
                     Updated=null
                 }

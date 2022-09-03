@@ -11,6 +11,6 @@ namespace Chat.Models.DboModels
         public string GroupName { get; set; }
         public DateTime Created { get; set; }
         public DateTime? Updated { get; set; }
-        public ICollection<User> Users { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 using Chat.Data;
 using Chat.Data.Repositories;
+using Chat.Interfaces;
 using Chat.Mapping;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,11 +11,11 @@ builder.Services.AddSingleton(settings);
 
 builder.Services.AddDbContext<ApplicationContext>(options =>
 {
+    options.UseLazyLoadingProxies();
     options.UseSqlServer(settings.DbConnection);
 });
 
-builder.Services.AddScoped<UserRepository>();
-builder.Services.AddScoped<MessageRepository>();
+builder.Services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
 
 builder.Services.AddControllers();
 
